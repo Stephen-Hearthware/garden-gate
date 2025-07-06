@@ -19,7 +19,6 @@ export function CaseCard({
   memberName,
   incident,
   date,
-  severity,
   nudges,
 }: CaseCardProps) {
   const friendly = (n: string) => {
@@ -28,7 +27,7 @@ export function CaseCard({
   };
 
   return (
-    <Card className="border-l-4 border-lime-400 bg-white/70 backdrop-blur-sm shadow-sm">
+    <Card className="gap-0 border-l-4 border-lime-400 bg-white/70 backdrop-blur-sm shadow-sm">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg font-semibold">{memberName}</CardTitle>
         <CardDescription className="text-xs text-zinc-500">
