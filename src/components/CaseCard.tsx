@@ -3,52 +3,91 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardDescription,
   CardFooter,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter as DialogFooterRoot,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 interface CaseCardProps {
   memberName: string;
   incident: string;
   date: string;
-  severity: string;
-  nudges: string[];
+  severity: "low" | "medium" | "high";
+  repeatOffense: boolean;
+  nudge: string | null;
 }
 
 export function CaseCard({
   memberName,
   incident,
-  date,
-  nudges,
+  severity,
+  repeatOffense,
+  nudge,
 }: CaseCardProps) {
-  const friendly = (n: string) => {
-    if (n.toLowerCase() === "remind guidelines") return "Gently revisit rules";
-    return n;
+  const truncated =
+    incident.length > 80 ? `${incident.slice(0, 80)}…` : incident;
+
+  const severityStyles: Record<CaseCardProps["severity"], string> = {
+    low: "bg-lime-100 text-lime-800",
+    medium: "bg-yellow-100 text-yellow-800",
+    high: "bg-red-100 text-red-800",
   };
 
   return (
-    <Card className="gap-0 border-l-4 border-lime-400 bg-white/70 backdrop-blur-sm shadow-sm">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-semibold">{memberName}</CardTitle>
-        <CardDescription className="text-xs text-zinc-500">
-          {new Date(date).toLocaleDateString()}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="py-2">
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card className="cursor-pointer overflow-hidden">
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-lg font-semibold">
+                {memberName}
+              </CardTitle>
+              <span
+                className={`text-xs px-2 py-0.5 rounded ${severityStyles[severity]}`}
+              >
+                {severity}
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-0 pb-2">
+            <p className="text-sm line-clamp-2">{truncated}</p>
+          </CardContent>
+          {nudge && (
+            <CardFooter className="pt-2">
+              <div className="w-full rounded bg-zinc-100 px-2 py-1 text-xs text-zinc-600">
+                Suggested Action: {nudge}
+              </div>
+            </CardFooter>
+          )}
+        </Card>
+      </DialogTrigger>
+      <DialogContent className="space-y-4">
+        <DialogHeader>
+          <DialogTitle>{memberName}</DialogTitle>
+        </DialogHeader>
         <p>{incident}</p>
-      </CardContent>
-      <CardFooter className="flex-col items-stretch">
-        <div className="w-full rounded-md border bg-zinc-50 p-3">
-          <p className="mb-1 text-xs font-medium">Suggested Actions</p>
-          <ul className="list-disc space-y-1 pl-4">
-            {nudges.map((nudge, idx) => (
-              <li key={idx} className="text-xs">
-                {friendly(nudge)}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </CardFooter>
-    </Card>
+        <p className="text-sm">Repeat offense: {repeatOffense ? "Yes" : "No"}</p>
+        {nudge && (
+          <div className="rounded bg-zinc-100 p-3 text-sm text-zinc-700">
+            Suggested Action: {nudge}
+          </div>
+        )}
+        <DialogFooterRoot>
+          <DialogClose asChild>
+            <button className="rounded border px-3 py-1 text-sm">Close</button>
+          </DialogClose>
+          <button className="rounded bg-red-600 px-3 py-1 text-sm text-white">
+            Escalate
+          </button>
+        </DialogFooterRoot>
+      </DialogContent>
+    </Dialog>
   );
 }

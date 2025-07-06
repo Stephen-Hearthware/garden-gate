@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Inter:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
-@theme {
-  --color-gardenStone: #F9F9F6;
-  --color-softGreen: #D4EAC8;
-  --color-olive: #6B8E23;
-  --color-gardenStone: #F9F9F6;
-  --color-softRed: #F6B8B8;
-  --color-softBlue: #D6EAF8;
+body {
+  @apply bg-gradient-to-b from-stone-100 via-stone-50 to-stone-100 text-zinc-700;
 }
