@@ -4,6 +4,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardFooter,
 } from "@/components/ui/card";
 
 interface CaseCardProps {
@@ -21,40 +22,34 @@ export function CaseCard({
   severity,
   nudges,
 }: CaseCardProps) {
-  const severityIcon =
-    severity === "low" ? "🌱" : severity === "medium" ? "🧹" : "⚠️";
-
   const friendly = (n: string) => {
     if (n.toLowerCase() === "remind guidelines") return "Gently revisit rules";
     return n;
   };
 
   return (
-    <Card className="bg-white/70 backdrop-blur-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)] hover:scale-[1.01] transition-transform text-foreground">
-      <CardHeader className="flex items-start gap-3">
-        <span className="text-2xl" aria-hidden="true">
-          {severityIcon}
-        </span>
-        <div>
-          <CardTitle className="text-xl">{memberName}</CardTitle>
-          <CardDescription className="text-sm">
-            {new Date(date).toLocaleDateString()}
-          </CardDescription>
-        </div>
+    <Card className="border-l-4 border-lime-400 bg-white/70 backdrop-blur-sm shadow-sm">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg font-semibold">{memberName}</CardTitle>
+        <CardDescription className="text-xs text-zinc-500">
+          {new Date(date).toLocaleDateString()}
+        </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-2">
+      <CardContent className="py-2">
         <p>{incident}</p>
-        <div className="flex flex-wrap gap-2">
-          {nudges.map((nudge, idx) => (
-            <span
-              key={idx}
-              className="bg-softGreen text-olive/90 px-2 py-1 rounded-full text-xs"
-            >
-              {friendly(nudge)}
-            </span>
-          ))}
-        </div>
       </CardContent>
+      <CardFooter className="flex-col items-stretch">
+        <div className="w-full rounded-md border bg-zinc-50 p-3">
+          <p className="mb-1 text-xs font-medium">Suggested Actions</p>
+          <ul className="list-disc space-y-1 pl-4">
+            {nudges.map((nudge, idx) => (
+              <li key={idx} className="text-xs">
+                {friendly(nudge)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </CardFooter>
     </Card>
   );
 }
