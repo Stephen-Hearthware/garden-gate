@@ -38,6 +38,10 @@ export default function Home() {
           Where we tend to our garden — and our neighbors — with care.
         </p>
       </header>
+      <div className="bg-lime-50 rounded-xl p-4 mb-8 text-center">
+        🌿 Today’s notes: Sun is shining, plots are growing fast. Let’s review
+        concerns with patience and care.
+      </div>
       <div className="grid gap-6 sm:grid-cols-2">
         {cases.map((c) => (
           <CaseCard key={c.id} {...c} />
