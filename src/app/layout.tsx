@@ -15,13 +15,10 @@ export default function RootLayout({
         className="min-h-screen font-body bg-gardenStone"
         style={{
           background:
-            "radial-gradient(circle at top left, #D6EAF8 0%, #F9F9F6 80%)",
+            "radial-gradient(circle at top left, #D4EAC8 0%, #F9F9F6 80%)",
         }}
       >
-        <main className="px-4 py-8 max-w-4xl mx-auto">
-          <h1 className="font-display text-4xl mb-8 text-center">Garden Gate</h1>
-          {children}
-        </main>
+        <main className="px-4 py-8 max-w-4xl mx-auto">{children}</main>
       </body>
     </html>
   );

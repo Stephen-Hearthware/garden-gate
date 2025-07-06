@@ -14,7 +14,7 @@ const config: Config = {
         softBlue: "#D6EAF8",
       },
       fontFamily: {
-        display: ["'DM Serif Text'", "serif"],
+        display: ["'DM Serif Display'", "serif"],
         body: ["Inter", "sans-serif"],
       },
     },
