@@ -4,7 +4,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
 } from "@/components/ui/card";
 
 interface CaseCardProps {
@@ -15,7 +14,13 @@ interface CaseCardProps {
   nudges: string[];
 }
 
-export function CaseCard({ memberName, incident, date, severity, nudges }: CaseCardProps) {
+export function CaseCard({
+  memberName,
+  incident,
+  date,
+  severity,
+  nudges,
+}: CaseCardProps) {
   const severityIcon =
     severity === "low" ? "🌱" : severity === "medium" ? "🧹" : "⚠️";
 
@@ -31,7 +36,7 @@ export function CaseCard({ memberName, incident, date, severity, nudges }: CaseC
           {severityIcon}
         </span>
         <div>
-          <CardTitle className="font-display text-xl">{memberName}</CardTitle>
+          <CardTitle className="text-xl">{memberName}</CardTitle>
           <CardDescription className="text-sm">
             {new Date(date).toLocaleDateString()}
           </CardDescription>

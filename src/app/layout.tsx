@@ -12,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="min-h-screen font-body bg-gardenStone"
+        className="min-h-screen bg-gardenStone"
         style={{
           background:
             "radial-gradient(circle at top left, #D4EAC8 0%, #F9F9F6 80%)",

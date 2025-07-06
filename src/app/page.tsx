@@ -33,8 +33,8 @@ export default function Home() {
             strokeLinejoin="round"
           />
         </svg>
-        <h1 className="font-display text-5xl">Garden Gate</h1>
-        <p className="font-body text-lg text-muted-foreground">
+        <h1 className="text-5xl">Garden Gate</h1>
+        <p className="text-lg text-muted-foreground">
           Where we tend to our garden — and our neighbors — with care.
         </p>
       </header>
