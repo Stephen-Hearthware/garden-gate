@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Garden Gate",
-  description: "A calm case review tool for community garden conflicts.",
+  description: "A case review tool for community garden conflicts.",
 };
 
 export default function RootLayout({
@@ -12,7 +12,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen text-zinc-700">
+      <body
+        className="min-h-screen bg-gardenStone text-zinc-700"
+        style={{
+          background:
+            "radial-gradient(circle at top left, #406C2C 0%, #D4EAC8 80%)",
+        }}
+      >
         <header className="bg-white/60 backdrop-blur-md">
           <nav className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/" className="font-serif text-2xl text-darkGarden">
