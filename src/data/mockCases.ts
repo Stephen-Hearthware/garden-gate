@@ -1,35 +1,53 @@
 export interface GardenCase {
-  id: number;
+  id: string;
   memberName: string;
-  incident: string;
-  date: string; // ISO string
-  severity: string;
-  nudges: string[];
+  age: number;
+  charge: string;
+  description: string;
+  date: string;
+  repeatOffense: boolean;
+  nudge: string | null;
 }
 
 export const cases: GardenCase[] = [
   {
-    id: 1,
+    id: "c1",
     memberName: "Alice Green",
-    incident: "Planted tomatoes in a shared plot without permission.",
+    age: 34,
+    charge: "Unauthorized Use of Shared Space",
+    description: "Planted tomatoes in a communal plot without approval.",
     date: "2025-07-01",
-    severity: "low",
-    nudges: ["Discuss plot sharing", "Remind guidelines"],
+    repeatOffense: false,
+    nudge: "Discuss plot sharing.",
   },
   {
-    id: 2,
+    id: "c2",
     memberName: "Bob Stone",
-    incident: "Left tools scattered around the communal area.",
+    age: 41,
+    charge: "Negligent Use of Tools",
+    description: "Left tools scattered in the shared path for multiple hours.",
     date: "2025-06-22",
-    severity: "medium",
-    nudges: ["Ask for tidiness", "Offer storage help"],
+    repeatOffense: false,
+    nudge: "Ask for tidiness.",
   },
   {
-    id: 3,
+    id: "c3",
     memberName: "Carol Bloom",
-    incident: "Overwatered neighbor's plants causing mildew.",
+    age: 29,
+    charge: "Damage to Neighboring Plot",
+    description: "Overwatered a neighboring plot, resulting in mildew on kale.",
     date: "2025-06-18",
-    severity: "high",
-    nudges: ["Coordinate watering", "Provide mildew treatment"],
+    repeatOffense: true,
+    nudge: null,
+  },
+  {
+    id: "c4",
+    memberName: "Dana Moss",
+    age: 52,
+    charge: "Non-Participation",
+    description: "Missed three consecutive required work days without notice.",
+    date: "2025-07-01",
+    repeatOffense: true,
+    nudge: "Consider formal probation period before removal decision.",
   },
 ];
